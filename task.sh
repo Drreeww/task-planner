@@ -53,7 +53,7 @@ add_task() {
 
 # Calculates the next ID. When there are no tasks, the ID will be 1.
 sequence() {
-    SEQUENCE=$(expr $(awk -F:: '
+    SEQUENCE=$(awk -F:: '
     BEGIN {
         max=0
     }
@@ -61,8 +61,8 @@ sequence() {
     { if(($1)>max)  max=($1) }
 
     END {
-        print max
-    }' $FILE) + 1)
+        print max + 1
+    }' $FILE)
 }
 
 # Choose what to do
