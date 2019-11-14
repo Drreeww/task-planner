@@ -45,8 +45,24 @@ add_task() {
         PRIORITY=0
     fi
 
-    echo $(date)::$TASK::$PRIORITY >> $FILE
-    echo Added task "$TASK" with priority $PRIORITY.
+    sequence
+
+    echo $SEQUENCE::$(date)::$TASK::$PRIORITY >> $FILE
+    echo Added task with ID $SEQUENCE.
+}
+
+# Calculates the next ID. When there are no tasks, the ID will be 1.
+sequence() {
+    SEQUENCE=$(expr $(awk -F:: '
+    BEGIN {
+        max=0
+    }
+
+    { if(($1)>max)  max=($1) }
+
+    END {
+        print max
+    }' $FILE) + 1)
 }
 
 # Choose what to do
@@ -60,4 +76,3 @@ then
         add_task $TASK $PRIORITY
     fi
 fi
-
