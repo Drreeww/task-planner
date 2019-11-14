@@ -4,7 +4,12 @@
 
 *Task* is a task planning tool for the command line.
 
-Since it is currently under development, a description will follow.
+## Command reference
+
+* `[no args]`       -   Print all tasks
+* `-a "NAME"`       -   Add a task with a specific name
+* `-a "NAME" -p 4`  -   Add a task with a specific name and a priority between 0 and 5
+* `-d 3`            -   Delete task with ID 5
 
 ## License
 

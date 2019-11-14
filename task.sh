@@ -24,18 +24,15 @@
 
 # "Task" is a simple task-planning tool for the shell.
 
-# Check command line arguments
-while getopts at:p: opt
-do
-    case $opt in
-        a) WHAT_TO_DO=ADD;;
-        t) TASK=$OPTARG;;
-        p) PRIORITY=$OPTARG;;
-    esac
-done
+
 
 # The file to store/get the tasks in/from
 FILE=tasks
+
+if [ ! -f $FILE]
+then
+    touch $FILE
+fi
 
 # Add a new task
 # Arguments: task, priority
@@ -47,32 +44,69 @@ add_task() {
 
     sequence
 
-    echo $SEQUENCE::$(date)::$TASK::$PRIORITY >> $FILE
+    echo $SEQUENCE::$TASK_ADD::$PRIORITY >> $FILE
     echo Added task with ID $SEQUENCE.
 }
 
-# Calculates the next ID. When there are no tasks, the ID will be 1.
-sequence() {
-    SEQUENCE=$(awk -F:: '
-    BEGIN {
-        max=0
-    }
-
-    { if(($1)>max)  max=($1) }
-
-    END {
-        print max + 1
-    }' $FILE)
+# Deletes a task with a specific ID
+delete_task() {
+    grep '^[^'$TASK_DELETE']::' tasks > $FILE.tmp
+    mv $FILE.tmp $FILE
+    echo Deleted task $TASK_DELETE.
 }
 
-# Choose what to do
-if [[ $WHAT_TO_DO -eq ADD  ]]
+# Calculates the next ID. When there are no tasks, the ID will be 1
+sequence() {
+    SEQUENCE=$(awk -F:: '
+    BEGIN {max=0}
+    { if(($1)>max)  max=($1) }
+    END {print max + 1}' $FILE)
+}
+
+# Prints out all tasks in a list
+print_tasks() {
+    sequence
+    id_length=$(echo -n "${SEQUENCE}" | wc -c)
+    awk -F:: '
+    BEGIN {
+        print "ID     Task                                             Priority"
+        print "----------------------------------------------------------------"
+    }
+
+    {
+        if (NF == 3) {
+            id_padding=""
+            task_padding=""
+
+            for (i = 1; i <= 7-id; i++)
+                id_padding=id_padding " "
+
+            for (i = 1; i <= 49-length($2); i++)
+                task_padding=task_padding " "
+
+            print $1 id_padding $2 task_padding $3
+        }
+    }
+    ' id="${id_length}" $FILE
+    exit 0
+}
+
+# Check command line arguments
+while getopts "a:p:d:" opt
+do
+    case $opt in
+        p) PRIORITY=$OPTARG;;
+        a) TASK_ADD=$OPTARG;;
+        d) TASK_DELETE=$OPTARG;;
+    esac
+done
+
+if [[ $TASK_ADD ]]
 then
-    if [ -z ${TASK+x} ] # Check why this evaluates to true, even if the task is set
-    then
-        echo You must set a task [-t "Your task"]
-        exit -1
-    else
-        add_task $TASK $PRIORITY
-    fi
+    add_task
+elif [[ $TASK_DELETE ]]
+then
+    delete_task
+else
+    print_tasks
 fi
