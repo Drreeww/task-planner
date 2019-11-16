@@ -6,10 +6,26 @@
 
 ## Command reference
 
-* `[no args]`       -   Print all tasks
-* `-a "NAME"`       -   Add a task with a specific name
-* `-a "NAME" -p 4`  -   Add a task with a specific name and a priority between 0 and 5
-* `-d 3`            -   Delete task with ID 5
+```
+usage: ./task.py [] [order] [add] [priority] [do] [done]
+
+View all tasks:
+./task.py
+./task.py order <task|priority|status>
+
+Add a task:
+./task.py add "<name>"
+./task.py add "<name>" priority <priority>
+
+Set the priority of an existing task:
+./task.py priority <priority> for <task id>
+
+Set a task to doing:
+./task.py do <task id>
+
+Delete a task:
+./task.py done <task id>
+```
 
 ## License
 
