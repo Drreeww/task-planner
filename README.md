@@ -4,27 +4,33 @@
 
 *Task* is a task planning tool for the command line.
 
+## Installation
+
+```bash
+python -m pip install task-planner
+```
+
 ## Command reference
 
 ```
-usage: ./task.py [] [order] [add] [priority] [do] [done]
+usage: python -m task [] [order] [add] [priority] [do] [done]
 
 View all tasks:
-./task.py
-./task.py order <task|priority|status>
+python -m task
+python -m task order <task|priority|status>
 
 Add a task:
-./task.py add "<name>"
-./task.py add "<name>" priority <priority>
+python -m task add "<name>"
+python -m task add "<name>" priority <priority>
 
 Set the priority of an existing task:
-./task.py priority <priority> for <task id>
+python -m task priority <priority> for <task id>
 
 Set a task to doing:
-./task.py do <task id>
+python -m task do <task id>
 
 Delete a task:
-./task.py done <task id>
+python -m task done <task id>
 ```
 
 ## License

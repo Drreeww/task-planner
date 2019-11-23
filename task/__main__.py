@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 
+# Copyright 2019 Yannick Kirschen. All rights reserved.
+# Use of this source code is governed by the GNU-GPL
+# license that can be found in the LICENSE file.
+
+
 import sqlite3
 
+from os import system, name
 from sys import argv
 
 
@@ -66,6 +72,8 @@ def delete_task():
 
 
 def print_tasks(order_by=''):
+    _clear()
+
     with sqlite3.connect('tasks.db') as connection:
         cursor = connection.cursor()
 
@@ -88,6 +96,13 @@ def print_tasks(order_by=''):
         for task_id, task, priority, status in cursor.execute(sql):
             print(task_id, ' ' * (offset_id + len(str(task_id))), task, ' ' * (44 - len(task)), priority, ' ' * 6,
                   'TODO' if status == 0 else 'DOING')
+
+
+def _clear():
+    if name == 'nt':
+        system('cls')
+    else:
+        system('clear')
 
 
 if __name__ == '__main__':
