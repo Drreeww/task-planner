@@ -37,4 +37,4 @@ python -m task done <task id>
 
 Copyright (c) 2019, Yannick Kirschen, All rights reserved.
 Licensed under the [MIT License](https://github.com/yannickkirschen/task/blob/master/LICENSE).
-Happy forking :fork_and_knife:
+Happy forking :)
