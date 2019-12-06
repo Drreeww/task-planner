@@ -68,7 +68,7 @@ def edit_status():
 
 def delete_task():
     with sqlite3.connect('tasks.db') as connection:
-        connection.cursor().execute('DELETE FROM TASKS WHERE ID=?;', argv[2], )
+        connection.cursor().execute('DELETE FROM TASKS WHERE ID=?;', (argv[2],))
 
 
 def print_tasks(order_by=''):
