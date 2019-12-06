@@ -1,5 +1,9 @@
 # Changelog for task
 
+## 1.2.1 (December 6, 2019)
+
+- Fixed some GitHub Action issues
+
 ## 1.2.0 (December 6, 2019)
 
 - Fixed an error where the screen won't clear on Windows.
