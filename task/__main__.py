@@ -5,9 +5,9 @@
 # license that can be found in the LICENSE file.
 
 
+import os
 import sqlite3
 
-from os import system, name
 from sys import argv
 
 
@@ -99,10 +99,10 @@ def print_tasks(order_by=''):
 
 
 def _clear():
-    if name == 'nt':
-        system('cls')
+    if os.name == 'posix':
+        os.system('clear')
     else:
-        system('clear')
+        os.system('cls')
 
 
 if __name__ == '__main__':
