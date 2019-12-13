@@ -1,5 +1,9 @@
 # Changelog for task
 
+## 1.2.2 (December 13, 2019)
+
+- Fixed an error which caused the lines to shift when the ID is larger than 9. (#8)
+
 ## 1.2.1 (December 6, 2019)
 
 - Fixed some GitHub Action issues
