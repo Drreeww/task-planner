@@ -89,13 +89,30 @@ def print_tasks(order_by=''):
         for x in cursor.execute('SELECT MAX(ID) FROM TASKS;'):
             max_id = x[0]
 
-        offset_id = len(str(max_id))
-        print('ID', ' ' * offset_id, 'Task', ' ' * 40, 'Priority', 'Status')
-        print('-' * (offset_id + 65))
+        len_col_id = len(str(max_id)) + 2
+        len_col_task = 60
+        len_col_priority = 10
+
+        header = '{}{}{}{}{}{}{}'
+        print(header.format(
+            'ID',
+            ' ' * (len_col_id - 2),
+            'Task',
+            ' ' * (len_col_task + 1),
+            'Priority',
+            ' ' * (len_col_priority - 8),
+            'Status'
+        ))
+        print('-' * (len_col_id + len_col_task + len_col_priority + 12))
 
         for task_id, task, priority, status in cursor.execute(sql):
-            print(task_id, ' ' * (offset_id + len(str(task_id))), task, ' ' * (44 - len(task)), priority, ' ' * 6,
-                  'TODO' if status == 0 else 'DOING')
+            row = '{}{}{}{}{}{}{}'
+            print(row.format(
+                task_id,
+                ' ' * (len_col_id - len(str(task_id))), task,
+                ' ' * len_col_task, priority,
+                ' ' * (len_col_priority - len(str(priority))), 'TODO' if status == 0 else 'DOING'
+            ))
 
 
 def _clear():
