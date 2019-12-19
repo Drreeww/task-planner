@@ -110,7 +110,7 @@ def print_tasks(order_by=''):
             print(row.format(
                 task_id,
                 ' ' * (len_col_id - len(str(task_id))), task,
-                ' ' * len_col_task, priority,
+                ' ' * (len_col_task - len(str(task)) + 5), priority,
                 ' ' * (len_col_priority - len(str(priority))), 'TODO' if status == 0 else 'DOING'
             ))
 
