@@ -1,5 +1,9 @@
 # Changelog for task
 
+## 1.2.3 (December 19, 2019)
+
+- Fixed an error which caused the lines to be displayed wrong. (#11)
+
 ## 1.2.2 (December 13, 2019)
 
 - Fixed an error which caused the lines to shift when the ID is larger than 9. (#8)
