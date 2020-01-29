@@ -1,6 +1,7 @@
 # Task
 
 [![PyPI version](https://badge.fury.io/py/task-planner.svg)](https://badge.fury.io/py/task-planner)
+[![](https://api.dependabot.com/badges/status?host=github&repo=yannickkirschen/task)](https://dependabot.com)
 
 ## Overview
 
