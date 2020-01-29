@@ -1,5 +1,7 @@
 # Task
 
+[![PyPI version](https://badge.fury.io/py/task-planner.svg)](https://badge.fury.io/py/task-planner)
+
 ## Overview
 
 *Task* is a task planning tool for the command line.
