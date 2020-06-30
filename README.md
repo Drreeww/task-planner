@@ -1,11 +1,13 @@
 # Task
 
 [![PyPI version](https://badge.fury.io/py/task-planner.svg)](https://badge.fury.io/py/task-planner)
-[![](https://api.dependabot.com/badges/status?host=github&repo=yannickkirschen/task)](https://dependabot.com)
 
 ## Overview
 
 *Task* is a task planning tool for the command line.
+By using a simple syntax, it allows you to keep track
+of all you to-do's, e.g. add a task:
+`python -m task add "<name>" priority <priority>`.
 
 ## Installation
 
